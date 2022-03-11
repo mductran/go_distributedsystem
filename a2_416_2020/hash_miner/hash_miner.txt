@@ -1,0 +1,75 @@
+package hash_miner
+
+type Answer struct {
+}
+
+// type WorkerStart struct {
+// 	ThreadByte uint8
+// }
+
+// type WorkerSuccess struct {
+// 	ThreadByte uint8
+// 	Secret     []uint8
+// }
+
+// type WorkerCancelled struct {
+// 	ThreadByte uint8
+// }
+
+// type MiningBegin struct{}
+
+// type MiningComplete struct {
+// 	Secret []uint8
+// }
+
+// func matchTrailingZeroes(comp []byte, trailing_zeroes int) bool {
+// 	comp_str := string(comp[trailing_zeroes:])
+// 	return comp_str == strings.Repeat("0", trailing_zeroes)
+// }
+
+// func worker(tracer *tracing.Tracer, thread_id int, prefix string, stop chan bool, answer chan []uint8) {
+// 	i := 0
+// 	thread_byte := uint8(thread_id)
+
+// 	for {
+// 		select {
+// 		case <-stop:
+// 			tracer.RecordAction(WorkerCancelled{thread_byte})
+// 			answer <- []uint8{0}
+// 			return
+// 		default:
+// 			fmt.Printf("\nthread id: %d, prefix: %s, suffix: %s\n", thread_id, prefix, strconv.FormatInt(int64(i), 2))
+
+// 			var buffer bytes.Buffer
+// 			buffer.WriteString(prefix)
+// 			buffer.WriteString(strconv.FormatInt(int64(i), 2))
+
+// 			comp := hex.EncodeToString([]byte(buffer.String()))
+// 			fmt.Printf("comp: %s\n\n", comp)
+// 			i++
+// 		}
+// 	}
+// }
+
+// func Mine(tracer *tracing.Tracer, nonce []uint8, numTrailingZeroes, threadBits uint) (secret []uint8, err error) {
+// 	tracer.RecordAction(MiningBegin{})
+
+// 	num_threads := int(math.Pow(2, float64(threadBits)))
+
+// 	stop := make(chan bool, num_threads)
+// 	answer := make(chan []uint8, num_threads)
+
+// 	fmt.Println("nonce: ", nonce)
+// 	fmt.Println("num trailing zeroes: ", numTrailingZeroes)
+
+// 	// TODO
+// 	for i := 0; i < int(threadBits); i++ {
+// 		go worker(tracer, i, strconv.FormatInt(int64(i), 2), stop, answer)
+// 	}
+
+// 	result := []uint8{}
+
+// 	tracer.RecordAction(MiningComplete{result})
+
+// 	return result, nil
+// }
